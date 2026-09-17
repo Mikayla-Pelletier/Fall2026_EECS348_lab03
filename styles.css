@@ -38,7 +38,7 @@ video {
 
 
 
-/* --- (2) CSS Update Page Styles --- */
+/* --- CSS Update Page Styles --- */
 .control-panel {
     background: #ffffff;
     padding: 20px;
@@ -60,25 +60,33 @@ video {
     min-width: 180px;
 }
 
+input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 input[type="range"] {
     flex-grow: 1;
 }
 
 .content-box {
-    background: #fdfdfd;
+    background: #ffffff;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin: 20px auto;
-    transition: width 0.1s ease; /* Makes the width adjustment smooth */
+    max-width: 500px;
     box-sizing: border-box;
-    /* Default fallback states */
-    width: 600px; 
+    transition: width 0.1s ease; /* Keeps your layout width transitions smooth */
+    
+    /* Crucial default border configuration */
+    border-style: solid;
+    border-width: 2px;
+    border-color: #333333;
     color: #333333;
 }
-
-
-
 
 
 /* --- (3) Password Verification Page Styles --- */

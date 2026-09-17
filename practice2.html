@@ -12,41 +12,56 @@
 <div class="control-panel">
     <h2>CSS Style Controls</h2>
     
-    <!-- 1. Text Color Control -->
+    <!-- 1. Text RGB Input (Accepts format like: 255, 99, 71) -->
     <div class="control-group">
-        <label for="colorPicker">Choose Text Color:</label>
-        <input type="color" id="colorPicker" value="#333333" oninput="updateStyles()">
+        <label for="textRgbInput">Text RGB Value:</label>
+        <input type="text" id="textRgbInput" placeholder="e.g., 0, 123, 255" oninput="updateStyles()">
     </div>
 
-    <!-- 2. Box Width Control -->
+    <!-- 2. Border RGB Input -->
     <div class="control-group">
-        <label for="widthSlider">Adjust Content Width (px):</label>
-        <input type="range" id="widthSlider" min="300" max="900" value="600" oninput="updateStyles()">
-        <span id="widthValue">600px</span>
+        <label for="borderRgbInput">Border RGB Value:</label>
+        <input type="text" id="borderRgbInput" placeholder="e.g., 220, 53, 69" oninput="updateStyles()">
+    </div>
+
+    <!-- 3. Border Width Slider -->
+    <div class="control-group">
+        <label for="borderWidthSlider">Border Width (px):</label>
+        <input type="range" id="borderWidthSlider" min="0" max="25" value="2" oninput="updateStyles()">
+        <span id="widthValue">2px</span>
     </div>
 </div>
 
-<!-- The target content box that will change dynamically -->
-<div id="dynamicBox" class="content-box">
+<!-- The target content paragraph box that will change dynamically -->
+<div id="dynamicParagraph" class="content-box">
     <h3>Live Preview Area</h3>
-    <p>This paragraph text will instantly adjust its color and bounding width based on the controls you toggle above. It demonstrates real-time DOM style manipulation!</p>
+    <p>This paragraph text and its border will instantly adjust their properties based on the configurations you enter into the control fields above.</p>
 </div>
 
 <script>
 function updateStyles() {
-    // Get values from the input fields
-    var chosenColor = document.getElementById("colorPicker").value;
-    var chosenWidth = document.getElementById("widthSlider").value;
+    // Grab all field inputs
+    var textRGB = document.getElementById("textRgbInput").value;
+    var borderRGB = document.getElementById("borderRgbInput").value;
+    var borderWidth = document.getElementById("borderWidthSlider").value;
     
-    // Select the content container element
-    var targetBox = document.getElementById("dynamicBox");
+    var targetBox = document.getElementById("dynamicParagraph");
     
-    // Update the live text label next to the slider
-    document.getElementById("widthValue").innerText = chosenWidth + "px";
+    // Update the visual slider label indicator
+    document.getElementById("widthValue").innerText = borderWidth + "px";
     
-    // Dynamically apply the new CSS properties
-    targetBox.style.color = chosenColor;
-    targetBox.style.width = chosenWidth + "px";
+    // 1. Dynamic Text Color Update
+    if (textRGB.trim() !== "") {
+        targetBox.style.color = "rgb(" + textRGB + ")";
+    }
+    
+    // 2. Dynamic Border Color Update
+    if (borderRGB.trim() !== "") {
+        targetBox.style.borderColor = "rgb(" + borderRGB + ")";
+    }
+    
+    // 3. Dynamic Border Width Update
+    targetBox.style.borderWidth = borderWidth + "px";
 }
 </script>
 
