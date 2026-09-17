@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Multiplication Table</title>
+    <!-- Links to your shared stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>PHP Multiplication Table (1 to 10)</h2>
+
+    <table class="php-table">
+        <!-- Generate the Top Table Header Row -->
+        <thead>
+            <tr>
+                <th>X</th>
+                <?php
+                // Loop to create top row headers (1 to 10)
+                for ($i = 1; $i <= 10; $i++) {
+                    echo "<th>$i</th>";
+                }
+                ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Outer loop controls the rows
+            for ($row = 1; $row <= 10; $row++) {
+                echo "<tr>";
+                
+                // First cell in the row acts as the side header
+                echo "<td><strong>$row</strong></td>";
+                
+                // Inner loop controls the columns (the actual multiplication)
+                for ($col = 1; $col <= 10; $col++) {
+                    $result = $row * $col;
+                    echo "<td>$result</td>";
+                }
+                
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+
+</body>
+</html>

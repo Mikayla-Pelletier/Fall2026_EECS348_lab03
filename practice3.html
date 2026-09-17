@@ -1,0 +1,60 @@
+<!--Password Verification Page: Checks if two passwords match. [20 points]-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2>Create Account</h2>
+    
+    <form onsubmit="return checkPasswords(event)">
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required placeholder="Enter password">
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" required placeholder="Repeat password">
+        </div>
+
+        <button type="submit">Verify Passwords</button>
+    </form>
+
+    <div id="message"></div>
+</div>
+
+<script>
+function checkPasswords(event) {
+    event.preventDefault();
+
+    var pass = document.getElementById("password").value;
+    var confirmPass = document.getElementById("confirm_password").value;
+    var messageBox = document.getElementById("message");
+
+    messageBox.style.display = "block";
+
+
+    if (pass.length < 8) {
+        messageBox.className ="error"
+        messageBox.innerHTML = "Password must be at least 8 characters long."
+    } else if (confirmPass.length < 8) {
+        messageBox.className ="error"
+        messageBox.innerHTML = "Password must be at least 8 characters long."
+    } else if (pass === confirmPass) {
+        messageBox.className = "success";
+        messageBox.innerHTML = "✓ Passwords match successfully!";
+    } else {
+        messageBox.className = "error";
+        messageBox.innerHTML = "✗ Error: Passwords do not match.";
+    }
+}
+</script>
+
+</body>
+</html>

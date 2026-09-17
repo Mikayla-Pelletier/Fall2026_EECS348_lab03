@@ -1,0 +1,54 @@
+<!--CSS Update Page: Allows users to modify the CSS format to change the text color and width. [20 points]-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="control-panel">
+    <h2>CSS Style Controls</h2>
+    
+    <!-- 1. Text Color Control -->
+    <div class="control-group">
+        <label for="colorPicker">Choose Text Color:</label>
+        <input type="color" id="colorPicker" value="#333333" oninput="updateStyles()">
+    </div>
+
+    <!-- 2. Box Width Control -->
+    <div class="control-group">
+        <label for="widthSlider">Adjust Content Width (px):</label>
+        <input type="range" id="widthSlider" min="300" max="900" value="600" oninput="updateStyles()">
+        <span id="widthValue">600px</span>
+    </div>
+</div>
+
+<!-- The target content box that will change dynamically -->
+<div id="dynamicBox" class="content-box">
+    <h3>Live Preview Area</h3>
+    <p>This paragraph text will instantly adjust its color and bounding width based on the controls you toggle above. It demonstrates real-time DOM style manipulation!</p>
+</div>
+
+<script>
+function updateStyles() {
+    // Get values from the input fields
+    var chosenColor = document.getElementById("colorPicker").value;
+    var chosenWidth = document.getElementById("widthSlider").value;
+    
+    // Select the content container element
+    var targetBox = document.getElementById("dynamicBox");
+    
+    // Update the live text label next to the slider
+    document.getElementById("widthValue").innerText = chosenWidth + "px";
+    
+    // Dynamically apply the new CSS properties
+    targetBox.style.color = chosenColor;
+    targetBox.style.width = chosenWidth + "px";
+}
+</script>
+
+</body>
+</html>
