@@ -5,52 +5,56 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Multiplication Table</title>
-    <!-- Links to your shared stylesheet -->
-    <link rel="stylesheet" href="style.css">
-</head>
 <body>
 
-    <h2>PHP Multiplication Table (1 to 10)</h2>
+    <div class="form-container">
+        <h2>Generate a Multiplication Table</h2>
+        <!-- Form submits back to the same page -->
+        <form method="POST" action="">
+            <div class="form-group">
+                <label for="max_number">Enter a maximum number:</label>
+                <input type="number" id="max_number" name="max_number" min="1" max="50" required placeholder="e.g., 12">
+            </div>
+            <button type="submit">Generate Table</button>
+        </form>
+    </div>
 
-    <table class="php-table">
-        <!-- Generate the Top Table Header Row -->
-        <thead>
-            <tr>
-                <th>X</th>
-                <?php
-                // Loop to create top row headers (1 to 10)
-                for ($i = 1; $i <= 10; $i++) {
-                    echo "<th>$i</th>";
-                }
-                ?>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Outer loop controls the rows
-            for ($row = 1; $row <= 10; $row++) {
-                echo "<tr>";
-                
-                // First cell in the row acts as the side header
-                echo "<td><strong>$row</strong></td>";
-                
-                // Inner loop controls the columns (the actual multiplication)
-                for ($col = 1; $col <= 10; $col++) {
-                    $result = $row * $col;
-                    echo "<td>$result</td>";
-                }
-                
-                echo "</tr>";
+    <?php
+    // Check if the form has been submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['max_number'])) {
+        
+        // Get the user input and convert it to an integer for safety
+        $max = intval($_POST['max_number']);
+        
+        echo "<h2 style='text-align: center;'>Multiplication Table (1 to $max)</h2>";
+        echo "<table class='php-table'>";
+        
+        // 1. Generate the Top Table Header Row
+        echo "<thead><tr><th>X</th>";
+        for ($i = 1; $i <= $max; $i++) {
+            echo "<th>$i</th>";
+        }
+        echo "</tr></thead>";
+        
+        // 2. Generate the Table Body
+        echo "<tbody>";
+        // Outer loop controls rows
+        for ($row = 1; $row <= $max; $row++) {
+            echo "<tr>";
+            // Side header cell
+            echo "<td><strong>$row</strong></td>";
+            
+            // Inner loop controls columns
+            for ($col = 1; $col <= $max; $col++) {
+                $result = $row * $col;
+                echo "<td>$result</td>";
             }
-            ?>
-        </tbody>
-    </table>
+            echo "</tr>";
+        }
+        echo "</tbody>";
+        echo "</table>";
+    }
+    ?>
 
 </body>
 </html>
